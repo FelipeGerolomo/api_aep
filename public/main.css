@@ -1,0 +1,29 @@
+.list-aeps h4 {
+    margin: 0 0 0px 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.list-aeps h6 {
+    margin-top: 0px;
+    font-size: 0.775rem;
+}
+
+.list-aeps a {
+    margin-left: 5px;
+}
+
+.list-aeps .uk-card-body {
+    margin-top: 10px;
+}
+
+.list-aeps .uk-badge {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 6px;
+    margin-left: 5px;
+}
+
+.header h5 {
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 0px;
+}

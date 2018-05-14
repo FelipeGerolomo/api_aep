@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    title AEP
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.42/css/uikit.min.css')
+    link(href='https://fonts.googleapis.com/css?family=Montserrat|Roboto', rel='stylesheet')
+    link(rel='stylesheet', type='text/css', media='screen', href='main.css')
+    script(src='main.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.42/js/uikit.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.42/js/uikit-icons.min.js')
+  body
+    .header
+      .uk-card.uk-card-default.uk-width-1-1
+        .uk-card-header
+          .uk-grid-small.uk-flex-middle(uk-grid='')
+            h5.uk-align-center ACOMPANHAMENTO DE ATIVIDADES
+    hr.uk-divider-icon
+  .list-aeps
+    each aep in aeps
+      .uk-card.uk-card-primary.uk-card-body.uk-width-1-1.uk-animation-slide-left
+        h4.uk-uk-card-title
+          | #{aep.disciplina}
+          span.uk-badge #{aep.qtd_aep}
+        h6.uk-uk-card-title
+          | Próxima atividade encerra #{aep.expiration}. |
+          a.icon-clock(uk-icon='icon: clock; ratio: 0.8')
+          |  #{aep.data_entrega} #{aep.hora_entrega}
+  
+

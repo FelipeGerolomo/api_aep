@@ -5,6 +5,11 @@ const cheerio = require('cheerio')
 const moment = require('moment');
 moment.locale("pt-br");
 
+app.use(express.static('public'));
+app.set('view engine', 'pug');
+
+
+
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
 });
@@ -22,7 +27,7 @@ app.get('/regex', function (req, res) {
     }
 });
 
-app.get('/', function (req, res) {
+app.get('/aeps', function (req, res) {
     request.post('http://moodle.unicesumar.edu.br/acompanhamento/acompanhamento_presencial.php', { form: { ra: '1607515-2' } }, function (error, response, body) {
         console.log('error:', error);
         page(body, res);
@@ -48,16 +53,18 @@ function page(html, res) {
         qtd_aep = $(this).children('td').children('span').text();
         expiration = newDate(data_entrega, hora_entrega);
         aeps[i] = {
-            DISCIPLINA: disciplina,
-            DTA_ENTREGA: data_entrega,
-            HORA_ENTREGA: hora_entrega,
-            QTD_AEP: qtd_aep,
-            EXPIRATION: expiration
+            disciplina: disciplina,
+            data_entrega: data_entrega,
+            hora_entrega: hora_entrega,
+            qtd_aep: qtd_aep,
+            expiration: expiration
         };
     });
 
     aeps.join(', ');
-    res.send(aeps)
+    // res.send(aeps)
+    console.log("aeps");
+    res.render('index', { title: 'AEPS', aeps: aeps });
 }
 
 function regexData(data_entrega) {
@@ -102,3 +109,12 @@ function newDate(dia, hora) {
 //     aeps[i] = { DISCIPLINA: disciplina, DTA_ENTREGA: data_entrega, QTD_AEP: qtd_aep };
 // });
 
+
+// app.get('/index', (req, res, next) => {
+//     res.sendFile('public/index.html', { root: __dirname });
+// });
+
+
+app.get('/index', function (req, res) {
+    res.render('index', { title: 'Hey', message: 'Hello there!' });
+});
