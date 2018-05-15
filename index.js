@@ -10,8 +10,8 @@ app.set('view engine', 'pug');
 
 
 
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
+app.listen(4000, function () {
+    console.log('Example app listening on port 4000!');
 });
 
 app.get('/regex', function (req, res) {
