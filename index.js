@@ -10,8 +10,8 @@ app.set('view engine', 'pug');
 
 
 
-app.listen(4000, function () {
-    console.log('Example app listening on port 4000!');
+app.listen(process.env.PORT || 3000, function () {
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
 
 app.get('/regex', function (req, res) {
@@ -115,6 +115,6 @@ function newDate(dia, hora) {
 // });
 
 
-app.get('/index', function (req, res) {
-    res.render('index', { title: 'Hey', message: 'Hello there!' });
+app.get('/', function (req, res) {
+    res.send("Works!");
 });
