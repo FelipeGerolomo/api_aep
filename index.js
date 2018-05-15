@@ -14,17 +14,8 @@ app.listen(process.env.PORT || 3000, function () {
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
 
-app.get('/regex', function (req, res) {
-    var txt = '04/05/2018 às 23:59:59';
-
-    var re1 = '((?:(?:[0-2]?\\d{1})|(?:[3][01]{1}))[-:\\/.](?:[0]?[1-9]|[1][012])[-:\\/.](?:(?:[1]{1}\\d{1}\\d{1}\\d{1})|(?:[2]{1}\\d{3})))(?![\\d])';	// DDMMYYYY 1
-
-    var p = new RegExp(re1, ["i"]);
-    var m = p.exec(txt);
-    if (m != null) {
-        var ddmmyyyy1 = m[1];
-        console.log(ddmmyyyy1.replace(/</, "&lt;") + "\n");
-    }
+app.get('/', function (req, res) {
+    res.send("Works!");
 });
 
 app.get('/aeps', function (req, res) {
@@ -62,7 +53,6 @@ function page(html, res) {
     });
 
     aeps.join(', ');
-    // res.send(aeps)
     console.log("aeps");
     res.render('index', { title: 'AEPS', aeps: aeps });
 }
@@ -99,22 +89,3 @@ function newDate(dia, hora) {
     return exp;
 }
 
-
-//PEGA CERTO
-
-// $('.container-pendente').each(function (i, elem) {
-//     disciplina = $(this).children('td').first().text();
-//     data_entrega = $(this).children('td').last().text();
-//     qtd_aep = $(this).children('td').children('span').text();
-//     aeps[i] = { DISCIPLINA: disciplina, DTA_ENTREGA: data_entrega, QTD_AEP: qtd_aep };
-// });
-
-
-// app.get('/index', (req, res, next) => {
-//     res.sendFile('public/index.html', { root: __dirname });
-// });
-
-
-app.get('/', function (req, res) {
-    res.send("Works!");
-});
