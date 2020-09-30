@@ -14,10 +14,6 @@ app.listen(process.env.PORT || 3000, function () {
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
 
-app.get('/', function (req, res) {
-    res.send("Works!");
-});
-
 app.get('/aeps', function (req, res) {
     request.post('http://moodle.unicesumar.edu.br/acompanhamento/acompanhamento_presencial.php', { form: { ra: '1607515-2' } }, function (error, response, body) {
         console.log('error:', error);
